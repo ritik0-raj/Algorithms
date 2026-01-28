@@ -1,5 +1,6 @@
-# Algorithms
-1.Bubble Sort Report
+# Lab1 Report Algorithms
+
+# 1.Bubble Sort Report
 Aim
 To study and analyze the Bubble Sort algorithm, understand its working method, write its pseudocode, and evaluate its time and space complexities in best, average, and worst cases.
 
@@ -25,7 +26,7 @@ Space Complexity
 O(1)
 Bubble Sort is an in-place sorting algorithm, meaning it does not require extra memory. Only a small temporary variable is used for swapping.
 
-2.Horner’s Rule Report
+# 2.Horner’s Rule Report
 Aim
 To understand and analyze Horner’s Rule for polynomial evaluation, write its pseudocode, and determine its time and space complexities.
 
@@ -60,7 +61,7 @@ Space Complexity
 O(1)
 The algorithm uses only a few variables (result, loop index). No extra memory grows with input size. Thus, it is an in-place constant-space algorithm.
 
-3.Linear Search Report
+# 3.Linear Search Report
 Aim
 To study and analyze the Linear Search algorithm, understand its working procedure, write its pseudocode, and evaluate its time and space complexities in best, average, and worst cases.
 
@@ -91,7 +92,7 @@ a loop index variable
 constant extra memory
 Thus, it is an in-place algorithm with constant memory usage.
 
-4.Permutation Generation (Backtracking) Report
+# 4.Permutation Generation (Backtracking) Report
 Aim
 To understand and analyze the permutation-generation algorithm using recursion and backtracking, write its pseudocode, and study its time and space complexities.
 
@@ -128,7 +129,7 @@ Array of size n
 Backtracking ensures no extra memory beyond recursion depth.
 
 
-5.Tower of Hanoi Report
+# 5.Tower of Hanoi Report
 Aim
 To study and analyze the Tower of Hanoi recursive algorithm, understand its working mechanism, write its pseudocode, and determine its time and space complexities.
 
@@ -172,7 +173,7 @@ No extra arrays or storage are used
 Thus, space complexity is determined by recursion depth.
 
 
-6.Selection Sort Report
+# 6.Selection Sort Report
 Aim
 To study and analyze the Selection Sort algorithm, understand its working procedure using recursion, write its pseudocode, and determine the time and space complexities for best, average, and worst cases.
 
@@ -219,7 +220,7 @@ Iterative Selection Sort: O(1)
 Recursive Selection Sort: O(n)
 Your code uses the recursive version → O(n) space.
 
-7.Boolean Logic (Truth Table Generation) Report
+# 7.Boolean Logic (Truth Table Generation) Report
 Aim
 To generate and analyze the truth table for basic Boolean operations (AND, OR, NOT) using a simple C++ program.
 
@@ -250,7 +251,7 @@ Space Complexity
 O(1)
 Only a few integer variables are used. Memory usage does not grow with input.
 
-8.Recursive Tip-Counting Algorithm Report
+# 8.Recursive Tip-Counting Algorithm Report
 Aim
 To analyze and understand the recursive algorithm findTips(), write its pseudocode, examine how it works, and determine its time and space complexities.
 
@@ -304,7 +305,7 @@ Each function call adds one frame to the recursion stack.
 Total depth = k ≈ log(v)
 Space Complexity: O(log v)
 
-9.Missing Number Detection (Parity Pattern) Report
+# 9.Missing Number Detection (Parity Pattern) Report
 Aim
 To analyze and understand an algorithm that detects a missing number in a sequence based on parity (odd/even pattern), write its pseudocode, and determine its time and space complexities.
 
