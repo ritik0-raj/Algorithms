@@ -420,14 +420,17 @@ MAIN:
 
 
 # Time Complexity
-
+Case	   Complexity
+Best Case	  O(n)
+Average Case  O(n²)
+Worst Case	  O(n²)
 
  Explanation:
 Each element may need to be compared with all previous elements.
 Recursive overhead does not change asymptotic complexity.
 
 #Space Complexity
-
+Auxiliary Space	O(n)
 Explanation:
 Recursive calls use stack space proportional to n.
 
@@ -471,13 +474,16 @@ MAIN:
 
 
 # Time Complexity
-
+Step	             Complexity
+Sorting activities	O(n log n)
+Selecting activities	O(n)
+Total Complexity	O(n log n)
  Explanation:
 Sorting dominates the runtime.
 Greedy selection is linear.
 
 # Space Complexity
-
+Auxiliary Space	O(n)
  Explanation:
 Vector stores all activities.
 No extra significant memory used beyond input storage.
@@ -536,12 +542,18 @@ MAIN:
 
 
 # Time Complexity
+Case	    Complexity
+Best Case	   O(n)
+Average Case   O(n)
+Worst Case	   O(n²)
 Explanation:
 On average, partition divides array efficiently.
 Worst case occurs when pivot is always smallest/largest (like sorted arrays).
 
 #Space Complexity
-
+Type	        Complexity
+Auxiliary Space	  O(1) (iterative)
+Recursive Stack	  O(n) worst case
  Explanation:
 No extra array is used.
 Recursion stack depends on partition depth.
@@ -607,15 +619,20 @@ MAIN:
     CALL solve for each method
 
 
-#Time Complexity
-
+# Time Complexity
+Step	               Complexity
+Sorting (each method)	O(n log n)
+Greedy selection	    O(n)
+Total Complexity	   O(n log n)
  Explanation:
 Sorting dominates runtime.
 Selection is linear.
 
 # Space Complexity
+   Type	    Complexity
+Auxiliary Space	O(V)
 
-# Explanation:
+Explanation:
 Storing items and copies for each method.
 
 
@@ -672,13 +689,16 @@ FUNCTION kruskalMST(graph):
 
 
 #Time Complexity
-
+Step	              Complexity
+Sorting edges	       O(E log E)
+Union-Find operations  O(E α(V))
+Total Complexity	   O(E log E)
  Explanation:
 Sorting dominates runtime
 α(V) is inverse Ackermann (very small, almost constant)
 
 #Space Complexity
-
+Auxiliary Space	O(V + E)
  Explanation:
 Edge list + parent & rank arrays
 
@@ -735,13 +755,16 @@ FUNCTION printMST(parent, graph):
 
 
 # Time Complexity
-
+Step	         Complexity
+Finding minimum key	O(V)
+Updating vertices	O(V)
+Total Complexity	O(V²)
 Explanation:
 Uses adjacency matrix → leads to O(V²)
 Can be optimized to O(E log V) using priority queue
 
 #Space Complexity
-
+Auxiliary Space	O(V)
  Explanation:
 Arrays: key[], parent[], mstSet[]
 
@@ -792,12 +815,14 @@ FUNCTION shortestPathMultistage(V, graph, start, end):
 
 
 # Time Complexity
-
+Step	        Complexity
+Nested loops	    O(V²)
+Total Complexity	O(V²)
  Explanation:
 For each vertex, all possible next vertices are checked.
 
 # Space Complexity
-
+Auxiliary Space	O(V²)
  Explanation:
 Adjacency matrix + cost and path arrays
 
@@ -840,11 +865,14 @@ FUNCTION matrixChainMultiplication(p, n):
 
 
 # Time Complexity
-
+Step	           Complexity
+Triple nested loops	O(n³)
+Total Complexity	O(n³)
  Explanation:
 For each chain length, all partitions are evaluated.
 
 # Space Complexity
+  DP Table	O(n²)
 
  Explanation:
 A 2D table is used to store subproblem results.
