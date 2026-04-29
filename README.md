@@ -1,4 +1,4 @@
-# Lab1 Report Algorithms
+# Report Algorithms
 
 # 1.Bubble Sort Report
 Aim
@@ -92,7 +92,7 @@ a loop index variable
 constant extra memory
 Thus, it is an in-place algorithm with constant memory usage.
 
-# 4.Permutation Generation (Backtracking) Report
+# 4.Permutation Generation
 Aim
 To understand and analyze the permutation-generation algorithm using recursion and backtracking, write its pseudocode, and study its time and space complexities.
 
@@ -110,7 +110,6 @@ Permute(arr, l, r):
     if l == r:
         print arr
         return
-    
     for i = l to r-1:
         swap arr[l] and arr[i]
         Permute(arr, l+1, r)
@@ -129,7 +128,7 @@ Array of size n
 Backtracking ensures no extra memory beyond recursion depth.
 
 
-# 5.Tower of Hanoi Report
+# 5.Tower of Hanoi 
 Aim
 To study and analyze the Tower of Hanoi recursive algorithm, understand its working mechanism, write its pseudocode, and determine its time and space complexities.
 
@@ -149,7 +148,6 @@ ToH(n, src, aux, dest):
     if n == 1:
         print "Move disk 1 from src to dest"
         return
-    
     ToH(n-1, src, dest, aux)
     print "Move disk n from src to dest"
     ToH(n-1, aux, src, dest)
@@ -187,12 +185,10 @@ Pseudocode
 SelectionSort(arr, n, index):
     if index == n-1:
         return
-    
     minIndex = index
     for i = index+1 to n-1:
         if arr[i] < arr[minIndex]:
             minIndex = i
-
     swap arr[index] and arr[minIndex]
     SelectionSort(arr, n, index+1)
 
@@ -335,9 +331,9 @@ findMissing(arr, n):
     for i = 0 to n-2:
         if parity(arr[i]) == parity(arr[i+1]):
             return (arr[i] + arr[i+1]) / 2
-    return -1   // No missing number detected
+    return -1   
 parity(x):
-    return x & 1   // 0 -> even, 1 -> odd
+    return x & 1  
 
 Example
 Input:
@@ -364,10 +360,10 @@ Assumes exactly one missing number.
 Assumes numbers are increasing by 1 (consecutive sequence).
 
 # 10. Recursive Insertion Sort
- #Aim
+Aim
 To implement and analyze the performance of recursive insertion sort by measuring the average execution time for varying input sizes.
 
-# Description
+Description
 This program implements the recursive version of insertion sort, where the array is sorted by recursively sorting the first n-1 elements and then inserting the last element into its correct position.
 The program:
 Generates random arrays using rand()
@@ -376,21 +372,17 @@ Measures execution time using chrono
 Repeats the experiment multiple times to calculate average time
 
 
-#Pseudocode
+Pseudocode
 
 FUNCTION recursiveInsertionSort(arr, n):
     IF n <= 1:
         RETURN
-
     CALL recursiveInsertionSort(arr, n-1)
-
     last = arr[n-1]
     j = n-2
-
     WHILE j >= 0 AND arr[j] > last:
         arr[j+1] = arr[j]
         j = j - 1
-
     arr[j+1] = last
 
 
@@ -401,52 +393,46 @@ FUNCTION fillArray(arr, n):
 
 MAIN:
     SET repetitions = 100
-
     FOR n FROM 1000 TO 20000 STEP 1000:
         totalTime = 0
-
         REPEAT 100 times:
             CREATE array of size n
             fillArray(arr, n)
-
             start time
             CALL recursiveInsertionSort(arr, n)
             stop time
-
             ADD time difference to totalTime
             DELETE array
-
         PRINT n and average time
 
 
-# Time Complexity
+Time Complexity
 Case	   Complexity
 Best Case	  O(n)
 Average Case  O(n²)
 Worst Case	  O(n²)
 
- Explanation:
+Explanation:
 Each element may need to be compared with all previous elements.
 Recursive overhead does not change asymptotic complexity.
 
-#Space Complexity
+Space Complexity
 Auxiliary Space	O(n)
 Explanation:
 Recursive calls use stack space proportional to n.
 
 
 # 11.Experiment File: Activity Selection Problem (Greedy Algorithm)
-#Aim
+Aim
 To implement the Activity Selection Problem using a greedy approach and select the maximum number of non-overlapping activities.
 
-# Short Description
+Short Description
 This program solves the Activity Selection Problem by:
 Taking input of activities (start and finish times)
 Sorting activities based on their finish time
 Selecting activities greedily such that each next activity starts after the previous one finishes
 
-
-#Pseudocode
+Pseudocode
 
 STRUCT Activity:
     id, start, finish
@@ -457,23 +443,19 @@ FUNCTION compare(a, b):
 MAIN:
     INPUT n
     CREATE list of activities
-
     FOR i FROM 0 TO n-1:
         READ start, finish
         ASSIGN id = i + 1
-
     SORT activities by finish time
-
     PRINT first activity
     lastFinish = finish time of first activity
-
     FOR each remaining activity:
         IF start >= lastFinish:
             PRINT activity
             UPDATE lastFinish
 
 
-# Time Complexity
+ Time Complexity
 Step	             Complexity
 Sorting activities	O(n log n)
 Selecting activities	O(n)
@@ -482,7 +464,7 @@ Total Complexity	O(n log n)
 Sorting dominates the runtime.
 Greedy selection is linear.
 
-# Space Complexity
+ Space Complexity
 Auxiliary Space	O(n)
  Explanation:
 Vector stores all activities.
@@ -491,10 +473,10 @@ No extra significant memory used beyond input storage.
 
 
 # 12.Experiment File: K-th Smallest Element using Quick Select
-# Aim
+ Aim
 To implement the Quick Select algorithm to find the k-th smallest element in an unsorted array efficiently.
 
- # Description
+ Description
 This program uses the Quick Select algorithm, which is based on the partition logic of Quick Sort.
 Working:
 A pivot element is selected.
@@ -502,17 +484,15 @@ The array is partitioned such that elements smaller than pivot go left and large
 Based on pivot position, the algorithm recursively searches only the required half.
 
 
-# Pseudocode
+Pseudocode
 
 FUNCTION partition(arr, low, high):
     pivot = arr[high]
     i = low
-
     FOR j FROM low TO high-1:
         IF arr[j] <= pivot:
             SWAP arr[i], arr[j]
             i++
-
     SWAP arr[i], arr[high]
     RETURN i
 
@@ -520,14 +500,12 @@ FUNCTION partition(arr, low, high):
 FUNCTION quickSelect(arr, low, high, k):
     IF low <= high:
         pivotIndex = partition(arr, low, high)
-
         IF pivotIndex == k:
             RETURN arr[pivotIndex]
         ELSE IF pivotIndex > k:
             RETURN quickSelect(arr, low, pivotIndex - 1, k)
         ELSE:
             RETURN quickSelect(arr, pivotIndex + 1, high, k)
-
     RETURN -1
 
 
@@ -560,13 +538,13 @@ Recursion stack depends on partition depth.
 
 
 # 13. Experiment File: Fractional Knapsack using Greedy Approach
-# Aim
+Aim
 To implement the Fractional Knapsack Problem using different greedy strategies and compare their results:
 By Profit
 By Weight
 By Profit/Weight Ratio
 
-#Description
+Description
 This program solves the Fractional Knapsack Problem, where items can be taken partially.
 Steps:
 Input items with profit and weight
@@ -579,18 +557,16 @@ Fill the knapsack until capacity is reached
 Calculate total profit
  The ratio-based method gives the optimal solution.
 
-# Pseudocode
+Pseudocode
 
 STRUCT Item:
     id, profit, weight, ratio
 
 FUNCTION solve(items, capacity, method):
     totalProfit = 0
-
     FOR each item in items:
         IF capacity <= 0:
             BREAK
-
         IF item.weight <= capacity:
             TAKE full item
             capacity -= item.weight
@@ -599,27 +575,22 @@ FUNCTION solve(items, capacity, method):
             TAKE fraction = capacity / item.weight
             totalProfit += item.profit * fraction
             capacity = 0
-
     PRINT totalProfit
 
 
 MAIN:
     INPUT n
     INPUT profit and weight for each item
-
     CALCULATE ratio = profit / weight
-
     INPUT capacity
-
     SORT items by:
         1. Profit (descending)
         2. Weight (ascending)
         3. Ratio (descending)
-
     CALL solve for each method
 
 
-# Time Complexity
+Time Complexity
 Step	               Complexity
 Sorting (each method)	O(n log n)
 Greedy selection	    O(n)
@@ -628,7 +599,7 @@ Total Complexity	   O(n log n)
 Sorting dominates runtime.
 Selection is linear.
 
-# Space Complexity
+ Space Complexity
    Type	    Complexity
 Auxiliary Space	O(V)
 
@@ -638,10 +609,10 @@ Storing items and copies for each method.
 
 
 # 14. Experiment File: Minimum Spanning Tree using Kruskal’s Algorithm
-🎯 Aim
+Aim
 To implement Kruskal’s Algorithm to find the Minimum Spanning Tree (MST) of a given weighted graph.
 
-#Description
+Description
 This program finds the Minimum Spanning Tree using a greedy approach:
 Extract all edges from the graph
 Sort edges in ascending order of weight
@@ -650,7 +621,7 @@ Add edges to MST only if they don’t form a cycle
 Stop when V-1 edges are selected
 Ensures minimum total weight while connecting all vertices.
 
-#Pseudocode
+Pseudocode
 
 STRUCT Edge:
     u, v, weight
@@ -662,7 +633,6 @@ FUNCTION findParent(parent, i):
 
 FUNCTION unionSet(parent, rank, x, y):
     FIND roots of x and y
-
     IF rank[x] < rank[y]:
         parent[x] = y
     ELSE IF rank[x] > rank[y]:
@@ -670,25 +640,19 @@ FUNCTION unionSet(parent, rank, x, y):
     ELSE:
         parent[y] = x
         rank[x]++
-
 FUNCTION kruskalMST(graph):
     CREATE edge list from graph
-
     SORT edges by weight
-
     INITIALIZE parent and rank arrays
-
     FOR each edge:
         FIND sets of both vertices
-
         IF sets are different:
             INCLUDE edge in MST
             UNION sets
-
         STOP when V-1 edges selected
 
 
-#Time Complexity
+Time Complexity
 Step	              Complexity
 Sorting edges	       O(E log E)
 Union-Find operations  O(E α(V))
@@ -697,7 +661,7 @@ Total Complexity	   O(E log E)
 Sorting dominates runtime
 α(V) is inverse Ackermann (very small, almost constant)
 
-#Space Complexity
+Space Complexity
 Auxiliary Space	O(V + E)
  Explanation:
 Edge list + parent & rank arrays
@@ -706,7 +670,7 @@ Edge list + parent & rank arrays
 
 
 # 15. Experiment File: Minimum Spanning Tree using Prim’s Algorithm
-# Aim
+ Aim
 To implement Prim’s Algorithm to find the Minimum Spanning Tree (MST) of a weighted graph.
 
 # Description
@@ -716,7 +680,7 @@ Repeatedly select the minimum weight edge connecting a visited vertex to an unvi
 Continue until all vertices are included
  Unlike Kruskal’s algorithm, Prim’s grows the MST vertex by vertex.
 
-#Pseudocode
+Pseudocode
 
 FUNCTION minKey(key, mstSet):
     min = infinity
@@ -732,20 +696,16 @@ FUNCTION primMST(graph):
         key[] = infinity
         mstSet[] = false
         parent[]
-
     key[0] = 0
     parent[0] = -1
-
     FOR count FROM 0 TO V-2:
         u = minKey(key, mstSet)
         mstSet[u] = true
-
         FOR each vertex v:
             IF graph[u][v] exists AND mstSet[v] == false
                AND weight < key[v]:
                 parent[v] = u
                 key[v] = weight
-
     PRINT MST using parent[]
 
 
@@ -754,7 +714,7 @@ FUNCTION printMST(parent, graph):
         PRINT parent[i] - i with weight
 
 
-# Time Complexity
+Time Complexity
 Step	         Complexity
 Finding minimum key	O(V)
 Updating vertices	O(V)
@@ -763,7 +723,7 @@ Explanation:
 Uses adjacency matrix → leads to O(V²)
 Can be optimized to O(E log V) using priority queue
 
-#Space Complexity
+Space Complexity
 Auxiliary Space	O(V)
  Explanation:
 Arrays: key[], parent[], mstSet[]
@@ -774,10 +734,10 @@ Arrays: key[], parent[], mstSet[]
 
 
 # 16. Experiment File: Shortest Path in Multistage Graph (Dynamic Programming)
-#Aim
+Aim
 To implement an algorithm to find the shortest path in a multistage graph using dynamic programming.
 
-# Short Description
+ Short Description
 This program computes the minimum cost path from a start vertex to an end vertex in a directed multistage graph.
 Working:
 Graph is represented as an adjacency matrix
@@ -786,14 +746,12 @@ Stores minimum cost from each vertex to destination
 Tracks the next vertex to reconstruct the path
  This is a bottom-up dynamic programming approach.
 
-# Pseudocode
+ Pseudocode
 
 FUNCTION shortestPathMultistage(V, graph, start, end):
     INITIALIZE cost[] = infinity
     INITIALIZE nextVertex[] = -1
-
     cost[end] = 0
-
     FOR i FROM V DOWNTO 1:
         minCost = infinity
         FOR j FROM i+1 TO V:
@@ -801,27 +759,24 @@ FUNCTION shortestPathMultistage(V, graph, start, end):
                 IF graph[i][j] + cost[j] < minCost:
                     minCost = graph[i][j] + cost[j]
                     next = j
-
         IF valid path found:
             cost[i] = minCost
             nextVertex[i] = next
-
     IF cost[start] == infinity:
         PRINT no path exists
         RETURN
-
     PRINT path from start using nextVertex[]
     PRINT minimum cost
 
 
-# Time Complexity
+Time Complexity
 Step	        Complexity
 Nested loops	    O(V²)
 Total Complexity	O(V²)
  Explanation:
 For each vertex, all possible next vertices are checked.
 
-# Space Complexity
+ Space Complexity
 Auxiliary Space	O(V²)
  Explanation:
 Adjacency matrix + cost and path arrays
@@ -831,47 +786,42 @@ Adjacency matrix + cost and path arrays
 
 
 # 17. Experiment File: Matrix Chain Multiplication (Dynamic Programming)
-# Aim
+ Aim
 To implement Matrix Chain Multiplication (MCM) using dynamic programming to find the minimum number of scalar multiplications required.
 
-# Description
+ Description
 This program determines the most efficient way to multiply a chain of matrices by deciding the optimal parenthesization.
 Matrix multiplication is associative, but cost varies
 The program uses dynamic programming to minimize operations
 It builds a table storing minimum multiplication costs for subproblems
  The goal is to reduce computational cost, not change the result.
 
-#Pseudocode
+Pseudocode
 
 FUNCTION matrixChainMultiplication(p, n):
     CREATE table m[n][n]
-
     FOR i FROM 1 TO n-1:
         m[i][i] = 0
-
     FOR L FROM 2 TO n-1:
         FOR i FROM 1 TO n-L:
             j = i + L - 1
             m[i][j] = infinity
-
             FOR k FROM i TO j-1:
                 cost = m[i][k] + m[k+1][j] 
                        + p[i-1] * p[k] * p[j]
-
                 IF cost < m[i][j]:
                     m[i][j] = cost
-
     RETURN m[1][n-1]
 
 
-# Time Complexity
+Time Complexity
 Step	           Complexity
 Triple nested loops	O(n³)
 Total Complexity	O(n³)
  Explanation:
 For each chain length, all partitions are evaluated.
 
-# Space Complexity
+ Space Complexity
   DP Table	O(n²)
 
  Explanation:
