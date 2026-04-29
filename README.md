@@ -519,7 +519,7 @@ MAIN:
     PRINT k-th smallest element
 
 
-# Time Complexity
+Time Complexity
 Case	    Complexity
 Best Case	   O(n)
 Average Case   O(n)
@@ -528,7 +528,7 @@ Explanation:
 On average, partition divides array efficiently.
 Worst case occurs when pivot is always smallest/largest (like sorted arrays).
 
-#Space Complexity
+Space Complexity
 Type	        Complexity
 Auxiliary Space	  O(1) (iterative)
 Recursive Stack	  O(n) worst case
@@ -728,12 +728,35 @@ Auxiliary Space	O(V)
  Explanation:
 Arrays: key[], parent[], mstSet[]
 
+# 16.Dijkstra’s Shortest Path Algorithm
+Aim
+To implement Dijkstra’s Algorithm using C++ to find the shortest path from a given source vertex to all other vertices in a weighted graph represented using an adjacency matrix.
 
+Problem Statement
+Given a weighted graph with non-negative edge weights, find the shortest distance from a source vertex to all other vertices using Dijkstra’s Algorithm.
 
+Algorithm / Pseudocode
+Initialize:
+Create an array dist[] and set all values to INFINITY.
+Create a visited[] array and set all values to false.
+Set dist[source] = 0.
+Repeat for V - 1 times:
+Select the unvisited vertex u with the minimum distance value.
+Mark u as visited.
+For each vertex v:
+If v is not visited AND there is an edge from u to v AND dist[u] + weight(u, v) < dist[v] → update dist[v] = dist[u] + weight(u, v).
+Print the final shortest distances from the source.
 
+Time Complexity
+O(V²) using adjacency matrix implementation (because for each vertex we search minimum distance in O(V) and relax edges in O(V))
+If implemented using a priority queue (min-heap), it can be reduced to O(E log V).
 
+Space Complexity
+O(V) for dist[] and visited[] arrays
+O(V²) for adjacency matrix storage
+Total Space Complexity: O(V²)
 
-# 16. Experiment File: Shortest Path in Multistage Graph (Dynamic Programming)
+# 17. Experiment File: Shortest Path in Multistage Graph (Dynamic Programming)
 Aim
 To implement an algorithm to find the shortest path in a multistage graph using dynamic programming.
 
@@ -781,11 +804,7 @@ Auxiliary Space	O(V²)
  Explanation:
 Adjacency matrix + cost and path arrays
 
-
-
-
-
-# 17. Experiment File: Matrix Chain Multiplication (Dynamic Programming)
+# 18. Experiment File: Matrix Chain Multiplication (Dynamic Programming)
  Aim
 To implement Matrix Chain Multiplication (MCM) using dynamic programming to find the minimum number of scalar multiplications required.
 
@@ -827,3 +846,236 @@ For each chain length, all partitions are evaluated.
  Explanation:
 A 2D table is used to store subproblem results.
 
+
+
+# 19. 0/1 Knapsack Problem using Dynamic Programming
+Aim
+To implement the 0/1 Knapsack Problem using Dynamic Programming (Bottom-Up approach) in C++ to find the maximum profit that can be obtained without exceeding the given weight capacity.
+
+Problem Statement
+Given a set of items, each with a weight and a value, determine the maximum value that can be obtained by selecting items such that the total weight does not exceed the given capacity. Each item can either be included or excluded (0/1 Knapsack).
+
+Algorithm / Pseudocode
+Create a 2D array dp[n+1][W+1] where:
+n = number of items
+W = maximum capacity
+Initialize:
+dp[0][w] = 0 for all w (no items → no value)
+dp[i][0] = 0 for all i (zero capacity → no value)
+For each item i from 1 to n:
+For each weight w from 1 to W:
+If wt[i-1] <= w:
+Include or exclude item: dp[i][w] = max(value[i-1] + dp[i-1][w - wt[i-1]], dp[i-1][w])
+Else:
+dp[i][w] = dp[i-1][w]
+The answer will be stored in dp[n][W].
+
+
+Time Complexity
+O(n × W) Where:
+n = number of items
+W = knapsack capacity
+This is because we fill a 2D table of size (n+1) × (W+1).
+
+Space Complexity
+O(n × W) for storing the DP table
+
+
+# 20. Floyd–Warshall Algorithm (All-Pairs Shortest Path)
+Aim
+To implement the Floyd–Warshall Algorithm in C++ to find the shortest paths between every pair of vertices in a weighted graph.
+
+Problem Statement
+Given a weighted directed graph represented using an adjacency matrix, compute the shortest distance between every pair of vertices. If no path exists, represent it as INF.
+
+Algorithm / Pseudocode
+Initialize a distance matrix dist[][] with the given adjacency matrix.
+For each intermediate vertex k from 0 to V-1:
+For each vertex i:
+For each vertex j:
+If path i → k and k → j exists:
+Update:  dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+After all iterations, dist[i][j] will contain the shortest distance from i to j.
+
+
+Time Complexity  O(V³) Because three nested loops are used for all vertices.
+
+Space Complexity
+O(V²) For storing the distance matrix.
+
+
+# 21. Graph Coloring Problem using Backtracking
+Aim
+To implement the Graph Coloring Problem using Backtracking in C++ and assign colors to vertices such that no two adjacent vertices share the same color.
+
+Problem Statement
+Given a graph represented using an adjacency matrix and a fixed number of colors, assign colors to each vertex so that no two adjacent vertices have the same color. If such an assignment is possible, print the solution; otherwise, report that no solution exists.
+
+Algorithm / Pseudocode
+Start from vertex 0.
+Try assigning a color from 1 to m (total colors).
+For each color:
+Check if assigning that color is safe (no adjacent vertex has same color).
+If safe:
+Assign color and move to next vertex (recursive call).
+If no color is valid:
+Backtrack and remove previously assigned color.
+Repeat until all vertices are colored or no solution exists.
+
+
+
+Time Complexity
+O(m^n) Where:
+m = number of colors
+n = number of vertices
+Because in the worst case, each vertex may try all colors.
+
+Space Complexity
+O(n²) for adjacency matrix
+O(n) for color array
+Total: O(n²)
+
+
+# 22. Hamiltonian Cycle Problem using Backtracking
+Aim
+To implement the Hamiltonian Cycle Problem using Backtracking in C++ and determine whether a cycle exists in a given graph that visits every vertex exactly once.
+
+Problem Statement
+Given a graph represented using an adjacency matrix, find a Hamiltonian Cycle starting from vertex 0 such that every vertex is visited exactly once and the cycle returns to the starting vertex. If such a cycle exists, print it; otherwise, report that no solution exists.
+
+Algorithm / Pseudocode
+Start from vertex 0 and mark it as the first vertex in the path.
+Recursively try to add vertices to the path:
+Check if the vertex is connected to the previous vertex.
+Check if the vertex is not already included in the path.
+If a valid vertex is found:
+Add it to the path and move to the next position.
+If no vertex is valid:
+Backtrack and remove the last added vertex.
+If all vertices are included:
+Check if last vertex is connected to the first vertex.
+If yes, print the Hamiltonian cycle.
+
+
+Time Complexity
+O(n!) Because in the worst case, all permutations of vertices may be explored.
+
+Space Complexity
+O(n²) for adjacency matrix
+O(n) for path array
+Total: O(n²)
+
+
+# 23. Longest Common Subsequence (LCS) using Dynamic Programming
+Aim
+To implement the Longest Common Subsequence (LCS) problem using Dynamic Programming in C++ and find the length of the longest subsequence common to two given strings.
+
+Problem Statement
+Given two strings, determine the length of their Longest Common Subsequence (LCS). A subsequence is a sequence that appears in the same relative order but not necessarily contiguous.
+
+Algorithm / Pseudocode
+Let n be length of first string and m be length of second string.
+Create a 2D DP table dp[n+1][m+1] initialized to 0.
+For each character pair (i, j):
+If text1[i-1] == text2[j-1]: dp[i][j] = 1 + dp[i-1][j-1]
+Else: dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+Final answer will be dp[n][m].
+
+
+Time Complexity
+O(n × m) Where:
+n = length of first string
+m = length of second string
+Because each cell of the DP table is computed once.
+
+Space Complexity
+O(n × m) for the DP table
+
+
+# 24. N-Queens Problem using Backtracking
+Aim
+To implement the N-Queens Problem using Backtracking in C++ and place N queens on an N×N chessboard such that no two queens attack each other.
+
+Problem Statement
+Given an integer N, place N queens on an N×N chessboard so that no two queens share the same row, column, or diagonal. Print one valid configuration if it exists; otherwise, report that no solution exists.
+
+Algorithm / Pseudocode
+Start placing queens column by column.
+For each column:
+Try placing a queen in each row.
+For each position, check safety:
+No queen in same row.
+No queen in upper diagonal.
+No queen in lower diagonal.
+If safe:
+Place queen and move to next column.
+If not safe:
+Backtrack and remove the queen.
+If all queens are placed successfully, print the board.
+Time Complexity
+O(N!) Because each queen placement explores multiple possibilities with backtracking.
+
+Space Complexity
+O(N²) for the chessboard
+O(N) recursion stack depth
+Total: O(N²)
+
+
+# 25. Subset Sum Problem using Backtracking
+Aim
+To implement the Subset Sum Problem using Backtracking in C++ and find all subsets of a given set whose sum is equal to a target value.
+
+Problem Statement
+Given a set of integers and a target sum, find all possible subsets whose sum is equal to the given target using the backtracking approach.
+
+Algorithm / Pseudocode
+Start with index 0, current sum 0, and empty subset.
+For each element:
+Include the element in the subset and add it to sum.
+Recursively move to the next element.
+Also explore the case where the element is excluded.
+If sum == target:
+Print the current subset.
+If:
+index == n OR sum > target
+Stop recursion (backtrack).
+
+
+Time Complexity
+O(2^n) Because each element has two choices: include or exclude.
+
+Space Complexity
+O(n) for recursion stack and temporary solution array
+O(n) auxiliary space
+Total: O(n) (excluding output space)
+
+
+# 26. Travelling Salesman Problem (TSP) using Backtracking
+Aim
+To implement the Travelling Salesman Problem (TSP) using Backtracking in C++ to find the minimum cost Hamiltonian cycle starting from a given city.
+
+Problem Statement
+Given a cost matrix representing distances between cities, find the minimum cost path starting from city 0, visiting all cities exactly once, and returning to the starting city.
+
+Algorithm / Pseudocode
+Start from the initial city (city 0).
+Mark the current city as visited.
+Recursively visit all unvisited cities:
+Add edge cost to current cost.
+Mark city as visited.
+If all cities are visited:
+Add cost to return to starting city.
+Update minimum cost if current path cost is smaller.
+Backtrack:
+Unmark the city and try other paths.
+Repeat until all possible paths are explored.
+
+
+Time Complexity
+O(N!) Because all possible permutations of cities are explored in the worst case.
+
+Space Complexity
+O(N²) for cost matrix
+O(N) for visited array
+O(N) recursion stack
+Total: O(N²)
